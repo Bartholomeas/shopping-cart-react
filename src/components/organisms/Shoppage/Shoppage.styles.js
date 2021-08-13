@@ -11,9 +11,14 @@ export const Wrapper = styled.div`
 `;
 export const CardsWrapper = styled.div`
   position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   bottom: 0;
+  left: 50%;
   height: 80%;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.bgShadeColor};
+  width: 80%;
+  padding: 3rem;
+  transform: translateX(-50%);
   color: ${({ theme }) => theme.colors.fontColor};
 `;

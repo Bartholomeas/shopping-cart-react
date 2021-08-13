@@ -17,12 +17,13 @@ const App = () => {
     <Wrapper>
       <GlobalStyle />
       <Router>
-        <Navbar />
         <Switch>
           <Route exact path="/">
+            <Navbar />
             <Homepage />
           </Route>
           <Route path="/shopping">
+            <Navbar />
             <Shoppage />
           </Route>
         </Switch>

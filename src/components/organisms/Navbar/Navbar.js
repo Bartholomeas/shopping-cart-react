@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
   height: 3rem;
   background: none;
   background-color: transparent;
+  z-index: 1000;
 `;
 
 const StyledLink = styled(Link)`
@@ -39,6 +41,7 @@ const Navbar = () => {
           <path d="m362.003906 405.003906c0 24.816406 20.1875 45 45 45 24.816406 0 45-20.183594 45-45 0-24.8125-20.183594-45-45-45-24.8125 0-45 20.1875-45 45zm0 0" />
         </Svg>
       </StyledLink>
+      <ShoppingCart />
     </Wrapper>
   );
 };
