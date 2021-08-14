@@ -9,8 +9,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: ${({ isMin }) => (isMin ? '10rem' : '30rem')};
-  height: ${({ isMin }) => (isMin ? '10rem' : '30rem')};
+  width: ${({ isMin }) => (isMin ? '90%' : '30rem')};
+  height: ${({ isMin }) => (isMin ? '22rem' : '30rem')};
   border: 1px solid ${({ theme }) => theme.colors.fontColor};
   background-color: ${({ theme }) => theme.colors.bgShadeColor};
 `;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const BottomWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 20%;
+  height: 8rem;
   padding: 0 2rem;
   bottom: 0;
   justify-content: space-between;
@@ -28,8 +28,10 @@ const BottomWrapper = styled.div`
 
 const QuantityInput = styled.input`
   height: 3.5rem;
-  width: 3rem;
+  width: 5rem;
   border: none;
+  text-align: center;
+  padding: 0 1rem;
 `;
 
 const ItemName = styled.div`
@@ -37,6 +39,7 @@ const ItemName = styled.div`
 `;
 
 const PriceTag = styled.div`
+  color: ${({ theme }) => theme.colors.fontColor};
   font-weight: bold;
 `;
 
@@ -68,16 +71,21 @@ const CardImage = styled.p`
   }
 `;
 
-const ShopCard = ({ name, price, color = '#fff' }) => {
+const showCard = (e) => {
+  console.log(e);
+};
+
+const ShopCard = ({ card, onClick, isMin = false, id, name, price, color = '#fff' }) => {
   return (
-    <Wrapper>
-      <ItemLink to="/budyn">
+    <Wrapper isMin={isMin}>
+      console.log(card)
+      <ItemLink to={`/shopping/:${id}`}>
         <ItemName>{name}</ItemName>
         <CardImage style={{ color: color }}>?</CardImage>
       </ItemLink>
       <BottomWrapper>
         <PriceTag>${price}</PriceTag>
-        <Button>Add to cart</Button>
+        {isMin ? null : <Button onClick={() => console.log(card)}>Add to cart</Button>}
         <QuantityInput type="number"></QuantityInput>
       </BottomWrapper>
     </Wrapper>

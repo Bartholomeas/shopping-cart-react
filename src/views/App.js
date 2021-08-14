@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import Homepage from '../components/organisms/Homepage/Homepage';
 import Navbar from '../components/organisms/Navbar/Navbar';
 import Shoppage from '../components/organisms/Shoppage/Shoppage';
+import ShoppingCart from '../components/organisms/ShoppingCart/ShoppingCart';
+import AppProvider from '../providers/AppProvider';
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,19 +17,21 @@ const Wrapper = styled.div`
 const App = () => {
   return (
     <Wrapper>
-      <GlobalStyle />
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Navbar />
-            <Homepage />
-          </Route>
-          <Route path="/shopping">
-            <Navbar />
-            <Shoppage />
-          </Route>
-        </Switch>
-      </Router>
+      <AppProvider>
+        <GlobalStyle />
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Route path="/shopping">
+              <Shoppage />
+            </Route>
+          </Switch>
+          <ShoppingCart />
+        </Router>
+      </AppProvider>
     </Wrapper>
   );
 };
