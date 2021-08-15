@@ -5,7 +5,6 @@ import { CardsContext } from '../../../providers/AppProvider';
 
 const Shoppage = () => {
   const { cards } = useContext(CardsContext);
-
   return (
     <Wrapper>
       <CardsWrapper>

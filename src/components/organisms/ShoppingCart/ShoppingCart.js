@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import ShopCard from '../../molecules/ShopCard/ShopCard';
 import { CardsContext } from '../../../providers/AppProvider';
+import { Button } from '../../atoms/Button/Button';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -34,17 +35,39 @@ export const CartTitle = styled.p`
   margin-bottom: 4rem;
 `;
 
+const FullPrice = styled.p`
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.fontColor};
+`;
+
+const CheckoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  margin-bottom: 2rem;
+`;
+
 const ShoppingCart = () => {
   const { openCart, chosenCards } = useContext(CardsContext);
   console.log(chosenCards);
+
   return (
     <>
       {openCart === true ? (
         <Wrapper>
           <InfoWrapper>
-            <CartTitle>Submit your order</CartTitle>
+            <CheckoutWrapper>
+              <CartTitle>Submit your order</CartTitle>
+              <FullPrice>
+                {chosenCards.length > 0 ? chosenCards.reduce((total, item) => total + parseInt(item.price * item.quantity), 0) : null}$
+              </FullPrice>
+              <Button>Checkout</Button>
+            </CheckoutWrapper>
             {chosenCards.map(({ isMin = false, id, name, color, price, quantity }, idx) => {
-              return <ShopCard key={`${id}-${idx}`} isMin={true} id={id} name={name} price={price} color={color} quantity={quantity} />;
+              return <ShopCard key={`${id}-${idx}`} isMin={true} id={id} name={name} price={price} color={color} itemQuantity={quantity} />;
             })}
           </InfoWrapper>
         </Wrapper>

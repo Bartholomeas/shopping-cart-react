@@ -6,7 +6,7 @@ import { CardsContext } from '../../../providers/AppProvider';
 const ShopCard = ({ isMin = false, id, name, price, color = '#fff' }) => {
   const [quantity, setQuantity] = useState('1');
   const { chosenCards, setChosenCards } = useContext(CardsContext);
-
+  console.log(quantity);
   const setQuantityNumber = (e) => {
     setQuantity(e.target.value);
   };
@@ -17,14 +17,18 @@ const ShopCard = ({ isMin = false, id, name, price, color = '#fff' }) => {
   };
   return (
     <Wrapper isMin={isMin}>
-      <ItemLink to={`/shopping/:${id}`}>
+      <ItemLink to={`/${id}`}>
         <ItemName>{name}</ItemName>
         <CardImage style={{ color: color }}>?</CardImage>
       </ItemLink>
       <BottomWrapper>
         <PriceTag>${price}</PriceTag>
         {isMin ? null : <Button onClick={() => showCard()}>Add to cart</Button>}
-        <QuantityInput onChange={(e) => setQuantityNumber(e)} type="number"></QuantityInput>
+        {isMin ? (
+          <QuantityInput onChange={(e) => setQuantityNumber(e)} type="number" defaultValue={quantity}></QuantityInput>
+        ) : (
+          <QuantityInput onChange={(e) => setQuantityNumber(e)} type="number" defaultValue="1"></QuantityInput>
+        )}
       </BottomWrapper>
     </Wrapper>
   );
