@@ -9,9 +9,8 @@ const Shoppage = () => {
   return (
     <Wrapper>
       <CardsWrapper>
-        {cards.map((card, { id, name, price, color }) => {
-          console.log(card);
-          return <ShopCard card={card} id={id} key={id} name={name} price={price} color={color} />;
+        {cards.map(({ id, name, price, color }) => {
+          return <ShopCard id={id} key={id} name={name} price={price} color={color} />;
         })}
       </CardsWrapper>
     </Wrapper>
