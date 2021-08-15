@@ -7,17 +7,11 @@ export const CardsContext = React.createContext({
   openCart: 'false',
 });
 
-const getCard = (e) => {
-  const fullElement = e.target.parentElement.parentElement;
-  console.log(e);
-};
-
 const AppProvider = ({ children }) => {
   const [openCart, setOpenCart] = useState(false);
-  const [chosenCard, setChosenCart] = useState({ id: '', name: '', price: '', color: '' });
-  console.log(openCart);
+  const [chosenCards, setChosenCards] = useState([]);
 
-  return <CardsContext.Provider value={{ cards, getCard, openCart, setOpenCart }}>{children}</CardsContext.Provider>;
+  return <CardsContext.Provider value={{ cards, openCart, setOpenCart, chosenCards, setChosenCards }}>{children}</CardsContext.Provider>;
 };
 
 export default AppProvider;

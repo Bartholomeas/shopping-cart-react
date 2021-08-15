@@ -9,11 +9,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
   width: 25rem;
   bottom: 0;
   right: 0;
   background-color: ${({ theme }) => theme.colors.bgShadeColor};
+  overflow-y: scroll;
 `;
 
 const InfoWrapper = styled.div`
@@ -34,15 +35,17 @@ export const CartTitle = styled.p`
 `;
 
 const ShoppingCart = () => {
-  const { openCart } = useContext(CardsContext);
-
+  const { openCart, chosenCards } = useContext(CardsContext);
+  console.log(chosenCards);
   return (
     <>
       {openCart === true ? (
         <Wrapper>
           <InfoWrapper>
             <CartTitle>Submit your order</CartTitle>
-            <ShopCard isMin={true} price="23" name="Classic Mystery Box" />
+            {chosenCards.map(({ isMin = false, id, name, color, price, quantity }, idx) => {
+              return <ShopCard key={`${id}-${idx}`} isMin={true} id={id} name={name} price={price} color={color} quantity={quantity} />;
+            })}
           </InfoWrapper>
         </Wrapper>
       ) : null}
